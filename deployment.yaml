@@ -1,0 +1,29 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: hello-code
+spec:
+ replicas: 3
+ template:
+    metadata:
+      labels:
+        app: app-nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.17-alpine
+        ports:
+        - containerPort: 80
+
+        volumeMounts:
+        - mountPath: /etc/nginx/conf.d
+          name: nginx-index
+          readOnly: true
+
+      volumes:
+      - name: nginx-index
+        configMap:
+          name: nginx-index
+          items: 
+            - key: nginx.index
+              path: index.html  
