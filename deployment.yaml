@@ -16,14 +16,14 @@ spec:
         - containerPort: 80
 
         volumeMounts:
-        - mountPath: /etc/nginx/conf.d
+        - mountPath: /usr/share/nginx/html
           name: nginx-index
           readOnly: true
 
       volumes:
       - name: nginx-index
         configMap:
-          name: nginx-index
+          name: nginx-conf
           items: 
             - key: nginx.index
               path: index.html  
