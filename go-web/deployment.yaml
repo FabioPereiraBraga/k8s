@@ -1,0 +1,17 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: hello-code-go
+spec:
+ replicas: 3
+ template:
+    metadata:
+      labels:
+        app: app-go
+    spec:
+      containers:
+      - name: go-web
+        image: fabiobraga/go-web:latest
+        ports:
+        - containerPort: 8000
+  
